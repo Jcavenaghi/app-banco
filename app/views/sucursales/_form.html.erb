@@ -1,0 +1,32 @@
+<%= form_with(model: sucursale) do |form| %>
+  <% if sucursale.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(sucursale.errors.count, "error") %> prohibited this sucursale from being saved:</h2>
+
+      <ul>
+        <% sucursale.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label : name, style: "display: block" %>
+    <%= form.text_field : name %>
+  </div>
+
+  <div>
+    <%= form.label :direc, style: "display: block" %>
+    <%= form.text_field :direc %>
+  </div>
+
+  <div>
+    <%= form.label :tel, style: "display: block" %>
+    <%= form.number_field :tel %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
