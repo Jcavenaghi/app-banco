@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_21_212708) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_22_175825) do
   create_table "days", force: :cascade do |t|
     t.string "day_name"
     t.datetime "inicio_turno"
     t.datetime "fin_turno"
-    t.integer "sucursale_id"
+    t.integer "sucursale_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["sucursale_id"], name: "index_days_on_sucursale_id"
@@ -30,10 +30,18 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_21_212708) do
   end
 
   create_table "turns", force: :cascade do |t|
-    t.datetime "inicio_turno"
-    t.datetime "fin_turno"
+    t.datetime "fecha"
+    t.string "reason"
+    t.boolean "state"
+    t.string "comment"
+    t.integer "client_user_id", null: false
+    t.integer "staff_user_id"
+    t.integer "sucursale_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["client_user_id"], name: "index_turns_on_client_user_id"
+    t.index ["staff_user_id"], name: "index_turns_on_staff_user_id"
+    t.index ["sucursale_id"], name: "index_turns_on_sucursale_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -49,4 +57,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_21_212708) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "turns", "sucursales"
+  add_foreign_key "turns", "users", column: "client_user_id"
+  add_foreign_key "turns", "users", column: "staff_user_id"
 end

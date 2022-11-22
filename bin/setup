@@ -30,4 +30,10 @@ FileUtils.chdir APP_ROOT do
 
   puts "\n== Restarting application server =="
   system! "bin/rails restart"
+
+  puts "\n== migraciones =="
+  system! "bin/rails migrate"
+
+  pust "\n== Creando seeds"
+  system! "bin/rails seed"
 end
