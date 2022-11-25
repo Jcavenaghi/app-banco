@@ -23,7 +23,6 @@ Day.create!(day_name:"Jueves", sucursale:s2)
 Day.create!(day_name:"Viernes", sucursale:s1)
 
 staff = User.create!(email: "staff@gmail.com", password: "passw0rd", password_confirmation: "passw0rd", role: 1)
-admin = User.create!(email: "admin@gmail.com", password: "passw0rd", password_confirmation: "passw0rd", role: 2)
 c1 = User.create!(email: "client@gmail.com", password: "passw0rd", password_confirmation: "passw0rd")
 c2= User.create!(email: "client2@gmail.com", password: "passw0rd", password_confirmation: "passw0rd")
 
@@ -32,5 +31,3 @@ Turn.create!(fecha: '2022-12-29 10:00:00.000000', reason:"gripe grave", sucursal
 Turn.create!(fecha: '2022-12-28 12:00:00.000000', reason:"cualquier razon", state: true, comment: "excelente atencion", sucursale_id: s1.id, client_user_id: c1.id, staff_user_id: staff.id)
 
 p " 👾 Base de datos creada!"
-
-

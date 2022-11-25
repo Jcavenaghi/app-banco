@@ -26,6 +26,7 @@ class TurnsController < ApplicationController
     if @turn.save
       redirect_to @turn, notice: "Turn was successfully created."
     else
+      
       render :new, status: :unprocessable_entity
     end
   end
@@ -53,6 +54,6 @@ class TurnsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def turn_params
-      params.require(:turn).permit(: fecha, :reason, :state, :comment, :client_user_id, :staff_user_id, :sucursale_id)
+      params.require(:turn).permit(:fecha, :reason, :state, :comment, :client_user_id, :staff_user_id, :sucursale_id)
     end
 end

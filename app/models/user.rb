@@ -2,7 +2,6 @@ class User < ApplicationRecord
   #2 has_many: uno para clientes, otros para staff.
   #hay 2 belongs_to del lado de turn.
 
-
   #un cliente puede tener muchos turnos
 
   has_many :client_user_turns, class_name: 'Turn', foreign_key: 'client_user_id' 
@@ -20,7 +19,7 @@ class User < ApplicationRecord
          
   #roles dentro de enum e inicialización por default en client
   
-  enum role: [:client, :staff, :admin]
+  enum role: [:client, :staff]
   after_initialize :set_default_role, :if => :new_record?
   def set_default_role 
     self.role ||= :client

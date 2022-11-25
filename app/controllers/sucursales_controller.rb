@@ -1,6 +1,6 @@
 class SucursalesController < ApplicationController
   before_action :set_sucursale, only: %i[ show edit update destroy ]
-
+  
   # GET /sucursales
   def index
     @sucursales = Sucursale.all
