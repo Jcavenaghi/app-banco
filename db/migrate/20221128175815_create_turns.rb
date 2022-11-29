@@ -7,12 +7,12 @@ class CreateTurns < ActiveRecord::Migration[7.0]
       t.string :comment
       t.references :client_user, null: false
       t.references :staff_user, null: true
-      t.references :sucursale, null: false
+      t.references :branch_office, null: false
 
       t.timestamps
     end
     add_foreign_key :turns, :users, column: :client_user_id
-    add_foreign_key :turns, :users, column: :staff_user_id
-    add_foreign_key :turns, :sucursales, column: :sucursale_id
+    add_foreign_key :turns, :admin_users, column: :staff_user_id
+    add_foreign_key :turns, :branch_offices, column: :branch_office_id
   end
 end

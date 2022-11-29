@@ -10,35 +10,52 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_25_183107) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_28_175815) do
+  create_table "active_admin_comments", force: :cascade do |t|
+    t.string "namespace"
+    t.text "body"
+    t.string "resource_type"
+    t.integer "resource_id"
+    t.string "author_type"
+    t.integer "author_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author"
+    t.index ["namespace"], name: "index_active_admin_comments_on_namespace"
+    t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource"
+  end
+
   create_table "admin_users", force: :cascade do |t|
+    t.integer "branch_office_id"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.integer "role", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["branch_office_id"], name: "index_admin_users_on_branch_office_id"
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
-  create_table "days", force: :cascade do |t|
-    t.string "day_name"
-    t.datetime "inicio_turno"
-    t.datetime "fin_turno"
-    t.integer "sucursale_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["sucursale_id"], name: "index_days_on_sucursale_id"
-  end
-
-  create_table "sucursales", force: :cascade do |t|
+  create_table "branch_offices", force: :cascade do |t|
     t.string "name"
     t.string "direc"
     t.integer "tel"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "days", force: :cascade do |t|
+    t.string "day_name"
+    t.time "begin_turn"
+    t.time "end_turn"
+    t.integer "branch_office_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["branch_office_id"], name: "index_days_on_branch_office_id"
   end
 
   create_table "turns", force: :cascade do |t|
@@ -48,12 +65,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_25_183107) do
     t.string "comment"
     t.integer "client_user_id", null: false
     t.integer "staff_user_id"
-    t.integer "sucursale_id", null: false
+    t.integer "branch_office_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["branch_office_id"], name: "index_turns_on_branch_office_id"
     t.index ["client_user_id"], name: "index_turns_on_client_user_id"
     t.index ["staff_user_id"], name: "index_turns_on_staff_user_id"
-    t.index ["sucursale_id"], name: "index_turns_on_sucursale_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -62,14 +79,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_25_183107) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer "role", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "turns", "sucursales"
+  add_foreign_key "days", "branch_offices"
+  add_foreign_key "turns", "admin_users", column: "staff_user_id"
+  add_foreign_key "turns", "branch_offices"
   add_foreign_key "turns", "users", column: "client_user_id"
-  add_foreign_key "turns", "users", column: "staff_user_id"
 end

@@ -3,6 +3,8 @@
 class DeviseCreateAdminUsers < ActiveRecord::Migration[7.0]
   def change
     create_table :admin_users do |t|
+      #un usuario staff tendra una sucursal
+      t.belongs_to :branch_office, index: true, optional: true
       ## Database authenticatable
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
@@ -32,7 +34,7 @@ class DeviseCreateAdminUsers < ActiveRecord::Migration[7.0]
       # t.string   :unlock_token # Only if unlock strategy is :email or :both
       # t.datetime :locked_at
 
-
+      t.integer :role, default: 0
       t.timestamps null: false
     end
 
