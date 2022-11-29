@@ -27,8 +27,8 @@ staff = AdminUser.create!(email: "staff@gmail.com", password: "passw0rd", passwo
 c1 = User.create!(email: "client@gmail.com", password: "passw0rd", password_confirmation: "passw0rd")
 c2= User.create!(email: "client2@gmail.com", password: "passw0rd", password_confirmation: "passw0rd")
 
-Turn.create!(fecha: '2022-12-28 18:00:00.000000', reason:"gripe leve", branch_office_id:s1.id, client_user_id:c1.id)
-Turn.create!(fecha: '2022-12-29 10:00:00.000000', reason:"gripe grave", branch_office_id:s2.id, client_user_id:c2.id)
+Turn.create!(fecha: '2022-12-28 18:00:00.000000', reason:"gripe leve", state: false, branch_office_id:s1.id, client_user_id:c1.id)
+Turn.create!(fecha: '2022-12-29 10:00:00.000000', reason:"gripe grave", state: false, branch_office_id:s2.id, client_user_id:c2.id)
 Turn.create!(fecha: '2022-12-28 12:00:00.000000', reason:"cualquier razon", state: true, comment: "excelente atencion", branch_office_id: s1.id, client_user_id: c1.id, staff_user_id: staff.id)
 
 p " 👾 Base de datos creada!"

@@ -1,10 +1,20 @@
 ActiveAdmin.register BranchOffice do
   config.filters = false
-  actions :index, :show, :create, :update, :destroy
+  actions :all, :except => [:destroy]
   # permit_params :name, :direc, :tel
 
-  action_item :delete, only: :delete do
-    link_to 'View on site', branch_office_path(post) if post.published?
+  controller do
+    def destroy
+      # if (current_admin_user.admin?)
+        if (BranchOffice.find(params[:id]).turns.find_by(state: false))
+          redirect_to admin_branch_offices_path, notice: "No se puede eliminar, tiene turnos pendientes"
+        else
+          BranchOffice.find(params[:id]).destroy
+          redirect_to admin_branch_offices_path, notice: "Sucursal eliminada"
+        end
+      # else
+      #   redirect_to admin_branch_offices_path, notice: "No tienes permisos para eliminar"
+    end
   end
   show do
     default_main_content
@@ -17,14 +27,5 @@ ActiveAdmin.register BranchOffice do
       end
     end
   end
-  # show do
-  #   #si existe un turno con state false (no atendido), no se puede eliminar la sucursal
-  #   if (BranchOffice.turns.find_by(state: false))
-  #     @BranchOffice.destroy
-  #     redirect_to branch_offices_url, notice: "Sucursal eliminada"
-  #  else
-  #     render :new, status: :unprocessable_entity
-  #  end
-  # end
   
 end

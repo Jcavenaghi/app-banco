@@ -36,6 +36,9 @@ gem "stimulus-rails"
 #for authentication
 gem 'devise'
 
+#for  authorization
+gem "cancancan"
+
 #for admin
 gem 'activeadmin'
 
