@@ -1,5 +1,6 @@
 class AdminUser < ApplicationRecord
-
+  validates :role, presence: true
+  
   #un usuario con rol staff puede estar relacionado 
   # a varios turnos (se hizo cargo de x turnos)
   has_many :staff_user_turns, class_name: 'Turn', foreign_key: 'staff_user_id'

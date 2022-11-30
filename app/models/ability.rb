@@ -2,11 +2,12 @@
 
 class Ability
   include CanCan::Ability
-  #paso 2 parametros, uno por user y otro por admin_user.
-  #admin_user sera nil cuando inicialice un user normal, y
-  #user sera nil cuando inicialice un admin_user
   def initialize(user)
-
+    if user.admin?
+      can :manage, :all
+    else
+      can :read, :all
+    end
     # Define abilities for the user here. For example:
     #
     #   return unless user.present?

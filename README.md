@@ -13,10 +13,11 @@ Things you may want to cover:
 * Configuration
 
 * Database creation
+    Decidi realizar 2 modelos diferentes para admin_user(admin y staff) y otro modelo para user(cliente). Ambos modelos utilizan device, en particular admin_user se crea a partir de la gema activeadmin.
 
 * Database initialization
-
-* How to run the test suite
+    rails db:setup inicializa todo, incluido los seeds brindados.
+    rails db:seed solo para generar las seeds(elimina lo que hay y vuelve a crear)
 
 * Services (job queues, cache servers, search engines, etc.)
 

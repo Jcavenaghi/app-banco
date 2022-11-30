@@ -18,10 +18,24 @@ s2 = BranchOffice.create!(name:"La Plata", direc:"Calle 10 1986", tel:"221878811
 s3 = BranchOffice.create!(name:"CABA", direc:"Av. 9 de Julio 12", tel:"2331191674")
 
 Day.create!(day_name:"Lunes", branch_office:s1)
+Day.create!(day_name:"Lunes", branch_office:s2)
+Day.create!(day_name:"Lunes", branch_office:s3)
+
+Day.create!(day_name:"Martes", branch_office:s1)
 Day.create!(day_name:"Martes", branch_office:s2)
-Day.create!(day_name:"Miercoles,", branch_office:s1)
+Day.create!(day_name:"Martes", branch_office:s3)
+
+Day.create!(day_name:"Miercoles", branch_office:s1)
+Day.create!(day_name:"Miercoles", branch_office:s2)
+Day.create!(day_name:"Miercoles", branch_office:s3)
+
+Day.create!(day_name:"Jueves", branch_office:s1)
 Day.create!(day_name:"Jueves", branch_office:s2)
+Day.create!(day_name:"Jueves", branch_office:s3)
+
 Day.create!(day_name:"Viernes", branch_office:s1)
+Day.create!(day_name:"Viernes", branch_office:s2)
+Day.create!(day_name:"Viernes", branch_office:s3)
 
 staff = AdminUser.create!(email: "staff@gmail.com", password: "passw0rd", password_confirmation: "passw0rd", role: 1)
 c1 = User.create!(email: "client@gmail.com", password: "passw0rd", password_confirmation: "passw0rd")
@@ -32,4 +46,5 @@ Turn.create!(fecha: '2022-12-29 10:00:00.000000', reason:"gripe grave", state: f
 Turn.create!(fecha: '2022-12-28 12:00:00.000000', reason:"cualquier razon", state: true, comment: "excelente atencion", branch_office_id: s1.id, client_user_id: c1.id, staff_user_id: staff.id)
 
 p " 👾 Base de datos creada!"
-AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
+AdminUser.create!(email: 'staff@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password', role: 1) if Rails.env.development?
