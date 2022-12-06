@@ -3,5 +3,13 @@
 
 <% if current_user %>
     <p> hello <%= current_user.email %>!</p>
-    
+    <div id="branch_offices">
+        <% @branch_offices.each do |branch_office| %>
+            <%= render branch_office %>
+            <p>
+            <%= link_to "Seleccionar", branch_office %>
+            </p>
+        <% end %>
+    </div>
+        
 <% end %>

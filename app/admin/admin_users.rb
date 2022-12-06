@@ -5,7 +5,7 @@ ActiveAdmin.register AdminUser do
 
   controller do
     def edit
-      #con params[:email] obtenemos el id de la sucursal seleccionada
+      #con params[:id] obtenemos el id de la sucursal seleccionada
       if (current_admin_user.id == params[:id].to_i)
         super #permite editar la información(un admin/staff solo puede editar su información, no la de otros)
       else

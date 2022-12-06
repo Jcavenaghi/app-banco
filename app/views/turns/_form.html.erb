@@ -13,7 +13,7 @@
 
   <div>
     <%= form.label :fecha, style: "display: block" %>
-    <%= form.datetime_field :fecha %>
+    <%= form.datetime_field :fecha, disabled: true %>
   </div>
 
   <div>
@@ -22,28 +22,8 @@
   </div>
 
   <div>
-    <%= form.label :state, style: "display: block" %>
-    <%= form.check_box :state %>
-  </div>
-
-  <div>
-    <%= form.label :comment, style: "display: block" %>
-    <%= form.text_field :comment %>
-  </div>
-
-  <div>
-    <%= form.label :client_user_id, style: "display: block" %>
-    <%= form.text_field :client_user_id %>
-  </div>
-
-  <div>
-    <%= form.label :staff_user_id, style: "display: block" %>
-    <%= form.text_field :staff_user_id %>
-  </div>
-
-  <div>
-    <%= form.label :sucursale_id, style: "display: block" %>
-    <%= form.text_field :sucursale_id %>
+    <%= form.label :branch_office_id, style: "display: block" %>
+    <%= form.text_field :branch_office_id, disabled: true %>
   </div>
 
   <div>

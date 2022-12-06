@@ -15,6 +15,7 @@ Things you may want to cover:
 * Database creation
     Decidi realizar 2 modelos diferentes para admin_user(admin y staff) y otro modelo para user(cliente). Ambos modelos utilizan device, en particular admin_user se crea a partir de la gema activeadmin.
     Tome la decisión de que cuando se crea una nueva sucursal, los horarios de la misma sean por defecto de 8:00 a 16:00 para todos los días.
+    Para cancelar turno, decidí que se elimine de todos lados al momento de eliminar.
 
 * Database initialization
     rails db:setup inicializa todo, incluido los seeds brindados.

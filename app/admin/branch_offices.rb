@@ -1,5 +1,6 @@
 ActiveAdmin.register BranchOffice do
   config.filters = false
+  
   actions :all
   permit_params :name, :direc, :tel
 

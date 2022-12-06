@@ -11,9 +11,11 @@
   <body>
     <header>
       <nav class="navbar navbar-light bg-light">
-        <a class="navbar-brand" href="/">Banco</a>
+        <a class="navbar-brand text-uppercase mx-3 fw-bold" href="/">Banco</a>
         <form class="form-inline justify-content-end">
-            <% if signed_in? %>
+            <% if current_user %>
+              <%= link_to "Mis turnos", turns_path, class: "text-decoration-none text-info mx-3"%>
+              <%= link_to "Mis datos", edit_user_registration_path, class: "text-decoration-none text-info mx-3"%>
               <%= link_to "Salir", destroy_user_session_path, class: "btn btn-outline-info mx-3" %>
             <% else %>
               <%= link_to "Registrarse", new_user_registration_path, class: "btn btn-outline-primary mx-3" %>

@@ -1,13 +1,15 @@
 class TurnsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_turn, only: %i[ show edit update destroy ]
 
   # GET /turns
   def index
-    @turns = Turn.all
+    @turns = Turn.where(client_user_id: current_user.id)
   end
 
   # GET /turns/1
   def show
+    @turn = Turn.where(client_user_id: current_user.id).find_by(id: params[:id])
   end
 
   # GET /turns/new

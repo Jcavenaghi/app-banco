@@ -1,14 +1,12 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Turns</h1>
+<h1>Mis turnos</h1>
 
 <div id="turns">
   <% @turns.each do |turn| %>
     <%= render turn %>
     <p>
-      <%= link_to "Show this turn", turn %>
+      <%= link_to "Ver turno", turn %>
     </p>
   <% end %>
 </div>
-
-<%= link_to "New turn", new_turn_path %>
