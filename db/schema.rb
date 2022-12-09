@@ -49,7 +49,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_28_175815) do
   end
 
   create_table "days", force: :cascade do |t|
-    t.string "day_name"
+    t.integer "day_name"
     t.time "begin_turn"
     t.time "end_turn"
     t.integer "branch_office_id", null: false

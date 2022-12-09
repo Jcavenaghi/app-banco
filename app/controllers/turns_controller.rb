@@ -14,7 +14,8 @@ class TurnsController < ApplicationController
 
   # GET /turns/new
   def new
-    @turn = Turn.new
+    @days =  Day.where(branch_office_id: params[:branch_office_id])
+    @turn = Turn.new()
   end
 
   # GET /turns/1/edit
@@ -23,13 +24,32 @@ class TurnsController < ApplicationController
 
   # POST /turns
   def create
-    @turn = Turn.new(turn_params)
-
-    if @turn.save
-      redirect_to @turn, notice: "Turn was successfully created."
+    #convierto la fecha del selet en un date y lo paso a numero para saber que día
+    #de la semana es.
+    year = turn_params["fecha(1i)"].to_i
+    month = turn_params["fecha(2i)"].to_i
+    day = turn_params["fecha(3i)"].to_i
+    hour = turn_params["fecha(4i)"].to_i
+    date = DateTime.new(year,month,day)
+  
+    date_day = Date.parse("#{year}-#{month}-#{day}").strftime("%u").to_i
+    if ((date_day> 0) && (date_day < 6))
+      #el dia en la oficina
+      # p Turn.where(client_user_id: current_user.id).find_by(fecha: date)
+      day_office = Day.where(branch_office_id: turn_params["branch_office_id"].to_i).find_by(day_name: date_day)
+      if ((hour >= day_office.begin_turn.hour) && (hour <= day_office.end_turn.hour))
+        p "estoy entrando, funciona ok"
+        @turn = Turn.new(turn_params)
+        if @turn.save
+          redirect_to @turn, notice: "El turno fue creado exitosamente!"
+        else
+          render :new, status: :unprocessable_entity
+        end
+      else
+        redirect_to root_path, notice: "El horario ingresado no es válido para el día solicitado."
+      end
     else
-      
-      render :new, status: :unprocessable_entity
+      redirect_to root_path, notice: "No se otorgan turnos días no habiles (solo de lunes a viernes)."
     end
   end
 
@@ -56,6 +76,6 @@ class TurnsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def turn_params
-      params.require(:turn).permit(:fecha, :reason, :state, :comment, :client_user_id, :staff_user_id, :sucursale_id)
+      params.require(:turn).permit(:fecha, :hour, :reason, :state, :comment, :client_user_id, :staff_user_id, :branch_office_id)
     end
 end

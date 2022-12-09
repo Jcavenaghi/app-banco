@@ -88,8 +88,9 @@ GEM
       autoprefixer-rails (>= 9.1.0)
       popper_js (>= 2.11.6, < 3)
       sassc-rails (>= 2.0.0)
+    bootstrap-datepicker-rails (1.9.0.1)
+      railties (>= 3.0)
     builder (3.2.4)
-    cancancan (3.4.0)
     concurrent-ruby (1.1.10)
     crass (1.0.6)
     debug (1.6.3)
@@ -253,7 +254,7 @@ DEPENDENCIES
   activeadmin
   bootsnap
   bootstrap (~> 5.2.2)
-  cancancan
+  bootstrap-datepicker-rails
   debug
   devise
   importmap-rails

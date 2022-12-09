@@ -13,9 +13,13 @@ Things you may want to cover:
 * Configuration
 
 * Database creation
-    Decidi realizar 2 modelos diferentes para admin_user(admin y staff) y otro modelo para user(cliente). Ambos modelos utilizan device, en particular admin_user se crea a partir de la gema activeadmin.
-    Tome la decisión de que cuando se crea una nueva sucursal, los horarios de la misma sean por defecto de 8:00 a 16:00 para todos los días.
-    Para cancelar turno, decidí que se elimine de todos lados al momento de eliminar.
+    . Decidi realizar 2 modelos diferentes para admin_user(admin y staff) y otro modelo para user(cliente). Ambos modelos utilizan device, en particular admin_user se crea a partir de la gema activeadmin.
+    . Tome la decisión de que cuando se crea una nueva sucursal, los horarios de la misma sean por defecto de 8:00 a 16:00 para todos los días.
+    . Para cancelar turno, decidí que se elimine de todos lados al momento de eliminar.
+    . en la vista de home, se muestran todas las sucursales del banco, además de información sobre los horarios de atención de cada sucursal.
+    . Para la información del cliente, solo muestro el mail (no hay otra cosa que mostrar) y utilizo el mismo apartado para la edición de la contraseña
+    . Para un mismo día y hora en una misma sucursal pueden existir x turnos (Se hablo en la clase donde se presento el proyecto).
+    . Un cliente puede tener 2 turnos el mismo dia en diferentes sucursales, no en la misma.
 
 * Database initialization
     rails db:setup inicializa todo, incluido los seeds brindados.
