@@ -1,37 +1,42 @@
-<div id="<%= dom_id turn %>">
-  <p>
-    <strong>Fecha:</strong>
-    <%= turn.fecha %>
-  </p>
+<div id="<%= dom_id turn %>" class="container-fluid">
+  <div class= "row card m-3 bg-light border border-4 border-info">
+    <p class="card-text text-center m-3">
+      <strong>Fecha:</strong>
+      <%= turn.fecha.strftime("%d/%m/%Y a las %I:%M%p") %>
+    </p>
 
-  <p>
-    <strong>Razon:</strong>
-    <%= turn.reason %>
-  </p>
+    <p class="card-text text-center mb-3">
+      <strong>Razon:</strong>
+      <%= turn.reason %>
+    </p>
 
-  <p>
-    <strong>Estado:</strong>
-    <%= turn.state %>
-  </p>
+    <p class="card-text text-center mb-3">
+      <strong>Estado:</strong>
+      <% if (turn.state) %>
+        Atendido
+      <% else %>
+        Pendiente
+      <% end %>
+    </p>
 
-  <p>
-    <strong>Comentario:</strong>
-    <%= turn.comment %>
-  </p>
+    <p class="card-text text-center mb-3">
+      <strong>Comentario:</strong>
+      <%= turn.comment %>
+    </p>
 
-  <p>
-    <strong>Cliente:</strong>
-    <%= turn.client_user_id %>
-  </p>
+    <p class="card-text text-center mb-3">
+      <strong>Cliente:</strong>
+      <%= turn.client_user_id %>
+    </p>
 
-  <p>
-    <strong>Personal:</strong>
-    <%= turn.staff_user_id %>
-  </p>
+    <p class="card-text text-center mb-3">
+      <strong>Personal:</strong>
+      <%= turn.staff_user_id %>
+    </p>
 
-  <p>
-    <strong>Sucursal:</strong>
-    <%= turn.branch_office_id %>
-  </p>
-
+    <p class="card-text text-center mb-3">
+      <strong>Sucursal:</strong>
+      <%= turn.branch_office_id %>
+    </p>
+  </div>
 </div>

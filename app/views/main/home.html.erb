@@ -1,15 +1,18 @@
-<h1>Main#home</h1>
-<p>Find me in app/views/main/home.html.erb</p>
-
+<h1 class="text-center fw-bold my-4">Sucursales del banco</h1>
 <% if current_user %>
-    <p> hello <%= current_user.email %>!</p>
-    <div id="branch_offices">
-        <% @branch_offices.each do |branch_office| %>
-            <%= render branch_office %>
-            <p>
-            <%= link_to "Sacar turno", new_turn_path(:branch_office_id => branch_office.id) %>
-            </p>
-        <% end %>
+    <p class="text-center fs-4"> Bienvenido <%= current_user.email %>. Aquí podra visualizar todas
+    las sucursales del banco </p>
+    <div class="container">
+        <div id="branch_offices", class="row">
+            <% @branch_offices.each do |branch_office| %>
+                <div class="card border border-2 my-3 bg-light">
+                    <%= render branch_office %>
+                    <p class="card-text text-center mb-3">
+                    <%= link_to "Sacar turno", new_turn_path(:branch_office_id => branch_office.id) %>
+                    </p>
+                </div>
+            <% end %>
+        </div>
     </div>
         
 <% end %>

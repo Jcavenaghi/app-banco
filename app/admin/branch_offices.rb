@@ -1,16 +1,7 @@
 ActiveAdmin.register BranchOffice do
   config.filters = false
-  
   actions :all
   permit_params :name, :direc, :tel
-
-  before_create do |office|
-    Day.create!(day_name: "Lunes", begin_turn: '8:00', end_turn: '16:00', branch_office: office)
-    Day.create!(day_name: "Martes", begin_turn: '8:00', end_turn: '16:00', branch_office: office)
-    Day.create!(day_name: "Miercoles", begin_turn: '8:00', end_turn: '16:00', branch_office: office)
-    Day.create!(day_name: "Jueves", begin_turn: '8:00', end_turn: '16:00', branch_office: office)
-    Day.create!(day_name: "Viernes", begin_turn: '8:00', end_turn: '16:00', branch_office: office)
-  end
   controller do
     def destroy
       if (current_admin_user.admin?)

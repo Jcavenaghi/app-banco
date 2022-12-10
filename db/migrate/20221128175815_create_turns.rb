@@ -3,7 +3,7 @@ class CreateTurns < ActiveRecord::Migration[7.0]
     create_table :turns do |t|
       t.datetime :fecha
       t.string :reason
-      t.boolean :state
+      t.boolean :state, default: false
       t.string :comment
       t.references :client_user, null: false
       t.references :staff_user, null: true

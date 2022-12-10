@@ -10,25 +10,42 @@
       </ul>
     </div>
   <% end %>
-  <div>
-    <%= form.label :fecha, style: "display: block" %>
-    <%= form.datetime_select :fecha, start_year: 2022, :required => true%>
-  </div>
-  <div>
-    <%= form.label :reason, style: "display: block" %>
-    <%= form.text_field :reason, :required => true%>
-  </div>
- 
-
-  <div>
-    <%= form.label :branch_office_id, style: "display: block" %>
-    <%= form.text_field :branch_office_id, value: params[:branch_office_id], readonly: true %>
-  </div>
-  <div>
-    <%= form.label :client_user_id, style: "display: block" %>
-    <%= form.text_field :client_user_id, value: current_user.id, readonly: true %>
-  </div>
-  <div>
-    <%= form.submit %>
+  <div class = "card bg-light m-2 border border-5 border-info">
+    <div class = "card-body text-center">
+      <% if (form.object.new_record?)%>
+        <div class = "mb-3">
+          <%= form.label :fecha, style: "display: block" %>
+          <%= form.datetime_select :fecha, start_year: 2022, :required => true, :minute_step => 30%>
+        </div>
+      <% else %>
+        <div class = "mb-3">
+          <%= form.label :fecha, style: "display: block" %>
+          <%= form.datetime_select :fecha, start_year: 2022, :required => true, :minute_step => 30, disabled: true%>
+        </div>
+      <% end %>
+      <div class = "mb-3">
+        <%= form.label :reason, style: "display: block" %>
+        <%= form.text_field :reason, :required => true%>
+      </div>
+    
+      <% if (form.object.new_record?)%>
+        <div class = "mb-3">
+          <%= form.label :branch_office_id, style: "display: block" %>
+          <%= form.text_field :branch_office_id, value: params[:branch_office_id], readonly: true %>
+        </div>
+      <% else %>
+        <div class = "mb-3">
+          <%= form.label :branch_office_id, style: "display: block" %>
+          <%= form.text_field :branch_office_id, value: turn.branch_office_id, readonly: true %>
+        </div>
+      <% end %>
+      <div class = "mb-3">
+        <%= form.label :client_user_id, style: "display: block" %>
+        <%= form.text_field :client_user_id, value: current_user.id, readonly: true %>
+      </div>
+      <div class = "mb-3">
+        <%= form.submit %>
+      </div>
+    </div>
   </div>
 <% end %>

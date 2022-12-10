@@ -61,7 +61,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_28_175815) do
   create_table "turns", force: :cascade do |t|
     t.datetime "fecha"
     t.string "reason"
-    t.boolean "state"
+    t.boolean "state", default: false
     t.string "comment"
     t.integer "client_user_id", null: false
     t.integer "staff_user_id"

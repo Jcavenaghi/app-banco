@@ -13,20 +13,25 @@ Things you may want to cover:
 * Configuration
 
 * Database creation
-    . Decidi realizar 2 modelos diferentes para admin_user(admin y staff) y otro modelo para user(cliente). Ambos modelos utilizan device, en particular admin_user se crea a partir de la gema activeadmin.
+    . Decidi realizar 2 modelos diferentes para el manejo de los usuarios. admin_user(admin y staff) y user(cliente). Ambos modelos utilizan device, en particular admin_user se crea a partir de la gema activeadmin.
+    . Cada usuario puede tener solo un rol, este no se puede cambiar.
     . Tome la decisión de que cuando se crea una nueva sucursal, los horarios de la misma sean por defecto de 8:00 a 16:00 para todos los días.
     . Para cancelar turno, decidí que se elimine de todos lados al momento de eliminar.
+    . La único que se puede modificar de un turno, es la razon de la solicitud.
     . en la vista de home, se muestran todas las sucursales del banco, además de información sobre los horarios de atención de cada sucursal.
     . Para la información del cliente, solo muestro el mail (no hay otra cosa que mostrar) y utilizo el mismo apartado para la edición de la contraseña
     . Para un mismo día y hora en una misma sucursal pueden existir x turnos (Se hablo en la clase donde se presento el proyecto).
-    . Un cliente puede tener 2 turnos el mismo dia en diferentes sucursales, no en la misma.
+    . Un cliente puede tener solamente un turno por día, es decir, no puede tener varios turnos en diferentes sucursales el mismo día.
 
 * Database initialization
-    rails db:setup inicializa todo, incluido los seeds brindados.
-    rails db:seed solo para generar las seeds(elimina lo que hay y vuelve a crear)
+    rails db:setup inicializa todo, incluido los seeds brindados. (hacer solo la primera vez)
+    rails db:seed solo para generar las seeds(elimina lo que hay y vuelve a crear). Realizar esta opción si se modifica algo el los seeds, o quiere restablecer la bd.
+    rails s levanta el servidor.
 
 * Services (job queues, cache servers, search engines, etc.)
 
 * Deployment instructions
+    . http://127.0.0.1:3000 llevara al login de usuario cliente, en caso de no estar logeado.
+    . Para acceder al login y funcionalidad de administrador/staff ir a http://127.0.0.1:3000/admin. Automaticamente lleva al login
 
 * ...

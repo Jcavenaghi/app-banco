@@ -37,14 +37,14 @@ Day.create!(day_name:5, begin_turn: '11:00', end_turn: '14:00', branch_office:s1
 Day.create!(day_name:5, begin_turn: '11:00', end_turn: '14:00', branch_office:s2)
 Day.create!(day_name:5, begin_turn: '11:00', end_turn: '14:00', branch_office:s3)
 
-staff = AdminUser.create!(email: "staff@gmail.com", password: "passw0rd", password_confirmation: "passw0rd", role: 1)
 c1 = User.create!(email: "client@gmail.com", password: "passw0rd", password_confirmation: "passw0rd")
 c2= User.create!(email: "client2@gmail.com", password: "passw0rd", password_confirmation: "passw0rd")
+
+staff = AdminUser.create!(email: 'staff@example.com', password: 'password', password_confirmation: 'password', role: 1, branch_office_id: s1.id) if Rails.env.development?
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
 
 Turn.create!(fecha: '2022-12-28 18:00:00.000000', reason:"gripe leve", state: false, branch_office_id:s1.id, client_user_id:c1.id)
 Turn.create!(fecha: '2022-12-29 10:00:00.000000', reason:"gripe grave", state: false, branch_office_id:s2.id, client_user_id:c2.id)
 Turn.create!(fecha: '2022-12-28 12:00:00.000000', reason:"cualquier razon", state: true, comment: "excelente atencion", branch_office_id: s1.id, client_user_id: c1.id, staff_user_id: staff.id)
 
 p " 👾 Base de datos creada!"
-AdminUser.create!(email: 'staff@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
-AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password', role: 1) if Rails.env.development?

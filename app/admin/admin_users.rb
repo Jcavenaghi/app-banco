@@ -24,15 +24,18 @@ ActiveAdmin.register AdminUser do
   end
 
   form do |f|
+    f.semantic_errors
     f.inputs do
       f.input :email
       f.input :password
       f.input :password_confirmation
       if f.object.new_record?
-        f.input :role, required: f.object.new_record?
+        f.input :role, required: f.object.new_record?, include_blank: false
         f.input :branch_office_id, :as => :select, :collection => BranchOffice.all.collect {|branch_office| [branch_office.name, branch_office.id]}, required: f.object.new_record?
       end
     end
     f.actions
   end
 end
+
+

@@ -1,10 +1,14 @@
-<h1>Mis turnos</h1>
+<h1 class="text-center fw-bold"> Mis turnos</h1>
 
-<div id="turns">
-  <% @turns.each do |turn| %>
-    <%= render turn %>
-    <p>
-      <%= link_to "Ver turno", turn %>
-    </p>
-  <% end %>
+<div class="container">
+  <div id="turns" class="row">
+    <% @turns.each do |turn| %>
+      <div class="card border border-2 my-3 bg-light">
+        <%= render turn %>
+        <p class="card-text text-center mb-3">
+          <%= link_to "Ver turno", turn %>
+        </p>
+      </div>
+    <% end %>
+  </div>
 </div>

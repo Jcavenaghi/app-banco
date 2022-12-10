@@ -1,9 +1,23 @@
-<h1>Nuevo turno </h1>
+<h1 class="text-center fw-bold"> Solicitar turno </h1>
+<p class="text-center fs-4"> A continuación se brinda el rango horario de atención para cada uno de
+  los días de esta sucursal</p>
+
+<div class="container">
+  <div id="days" class="row">
+    <% @days.each do |day| %>
+      <div class="card border border-2 my-3 bg-light">
+        <p class= card-text> <strong>Dia: </strong> <%= day.day_name %> </p>
+        <p class= card-text> <strong>Inicio de atención:</strong> <%= day.begin_turn.strftime("%I:%M%p") %> </p>
+        <p class= card-text> <strong>Fin de atención:</strong> <%= day.end_turn.strftime("%I:%M%p") %> </p>
+      </div>
+    <% end %>
+  </div>
+</div>
 
 <%= render "form", turn: @turn %>
 
 <br>
 
-<div>
-  <%= link_to "Back to turns", turns_path %>
+<div class= "text-center fw-bold">
+  <%= link_to "Volver a turnos", turns_path %>
 </div>
