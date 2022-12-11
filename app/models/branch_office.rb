@@ -1,6 +1,6 @@
 class BranchOffice < ApplicationRecord
     #la sucursal tiene varios dias (lun a vie)
-    has_many :days
+    has_many :days, dependent: :delete_all
     #la sucursal tiene varios turnos de varios clientes
     has_many :turns
     has_many :admin_users

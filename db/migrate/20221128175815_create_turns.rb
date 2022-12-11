@@ -7,7 +7,7 @@ class CreateTurns < ActiveRecord::Migration[7.0]
       t.string :comment
       t.references :client_user, null: false
       t.references :staff_user, null: true
-      t.references :branch_office, null: false
+      t.references :branch_office, null: true
 
       t.timestamps
     end
