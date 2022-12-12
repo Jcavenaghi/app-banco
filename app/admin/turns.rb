@@ -4,6 +4,7 @@ ActiveAdmin.register Turn do
   permit_params :fecha, :reason, :state, :comment, :client_user_id, :staff_user_id, :branch_office_id
   actions :all, :except => [:new]
   form do |f|
+    f.semantic_errors
     f.object.staff_user_id = current_admin_user.id
     f.inputs do
       f.input :state, label: "Atendido"
@@ -16,7 +17,7 @@ ActiveAdmin.register Turn do
     selectable_column
     column :fecha
     column :reason
-    column :state
+    column (:state) {|obj|  obj.state ? 'Atendido' : 'Pendiente'} 
     column :client_user
     column :staff_user
     column :branch_office
