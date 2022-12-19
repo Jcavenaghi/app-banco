@@ -8,8 +8,6 @@ Rails.application.routes.draw do
   end
   devise_for :users
   resources :turns
-  resources :days
-  resources :branch_offices
 
   root "main#home"
 end

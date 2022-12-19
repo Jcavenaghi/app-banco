@@ -83,7 +83,7 @@ ActiveAdmin.setup do |config|
   # doesn't have access to Dashboard, he'll end up in a redirect loop.
   # Method provided here should be defined in application_controller.rb.
   # config.on_unauthorized_access = :access_denied
-
+config.skip_before_action :authenticate_user!
   # == Current User
   #
   # Active Admin will associate actions with the current
