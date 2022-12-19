@@ -16,7 +16,7 @@ Things you may want to cover:
     . Decidi realizar 2 modelos diferentes para el manejo de los usuarios. admin_user(admin y staff) y user(cliente). Ambos modelos utilizan device, en particular admin_user se crea a partir de la gema activeadmin.
     . Cada usuario puede tener solo un rol, este no se puede cambiar.
     . Tome la decisión de que cuando se crea una nueva sucursal, los horarios de la misma sean por defecto de 8:00 a 16:00 para todos los días.
-    . Cuando una sucursal se elimina, los turnos atentidos relacionados a ella, quedan sin una sucursal asignada, al igual que los staffs que estaban referenciados a esa sucursal.
+    . Para eliminar una sucursal, la misma no debe tener referencias. Si ya ha sido asignada a algun personal o hay turnos completados en la misma, no se puede borrar.
     . Si se cambia la hora de atención en un día, los turnos que ya existian no se verán modificados.
     . Para cancelar turno, decidí que se elimine de todos lados al momento de eliminar.
     . La único que se puede modificar de un turno, es la razon de la solicitud.

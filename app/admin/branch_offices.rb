@@ -6,12 +6,12 @@ ActiveAdmin.register BranchOffice do
     def destroy
       if (current_admin_user.admin?)
         #con params[:id] obtenemos el id de la sucursal seleccionada
-        if (BranchOffice.find(params[:id]).turns.find_by(state: false))
+         office = BranchOffice.find(params[:id])
+        if (office.turns.find_by(state: false))
           redirect_to admin_branch_offices_path, notice: "No se puede eliminar una sucursal con turnos pendientes"
+        elsif ( (office.turns.find_by(state: true)) || (office.admin_users != []))
+          redirect_to admin_branch_offices_path, notice: "No se puede eliminar una sucursal que ha sido referenciada"
         else
-          office = BranchOffice.find(params[:id])
-          office.admin_users.clear
-          office.turns.clear
           office.destroy
           redirect_to admin_branch_offices_path, notice: "Sucursal eliminada"
         end

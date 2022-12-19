@@ -34,11 +34,9 @@ class TurnsController < ApplicationController
     date_day = Date.parse("#{year}-#{month}-#{day}").strftime("%u").to_i
     if ((date_day> 0) && (date_day < 6))
       #si no tiene turno en el día solicitado, se le otorga.
-      p Turn.where(client_user_id: current_user.id).where(fecha: (date..date_max))
       if (Turn.where(client_user_id: current_user.id).where(fecha: (date..date_max))  == [])
         day_office = Day.where(branch_office_id: turn_params["branch_office_id"].to_i).find_by(day_name: date_day)
         if ((hour >= day_office.begin_turn.hour) && (hour <= day_office.end_turn.hour))
-          p "estoy entrando, funciona ok"
           @turn = Turn.new(turn_params)
           if @turn.save
             redirect_to @turn, notice: "El turno fue creado exitosamente!"
