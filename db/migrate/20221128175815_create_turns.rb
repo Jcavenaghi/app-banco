@@ -1,8 +1,8 @@
 class CreateTurns < ActiveRecord::Migration[7.0]
   def change
     create_table :turns do |t|
-      t.datetime :fecha
-      t.string :reason
+      t.datetime :fecha, null: false
+      t.string :reason, null: false
       t.boolean :state, default: false
       t.string :comment
       t.references :client_user, null: false

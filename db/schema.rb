@@ -27,17 +27,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_28_175815) do
   end
 
   create_table "branch_offices", force: :cascade do |t|
-    t.string "name"
-    t.string "direc"
-    t.integer "tel"
+    t.string "name", null: false
+    t.string "direc", null: false
+    t.integer "tel", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "days", force: :cascade do |t|
-    t.integer "day_name"
-    t.time "begin_turn"
-    t.time "end_turn"
+    t.integer "day_name", null: false
+    t.time "begin_turn", null: false
+    t.time "end_turn", null: false
     t.integer "branch_office_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -45,8 +45,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_28_175815) do
   end
 
   create_table "turns", force: :cascade do |t|
-    t.datetime "fecha"
-    t.string "reason"
+    t.datetime "fecha", null: false
+    t.string "reason", null: false
     t.boolean "state", default: false
     t.string "comment"
     t.integer "client_user_id", null: false

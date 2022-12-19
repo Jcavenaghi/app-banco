@@ -10,10 +10,10 @@ class BranchOffice < ApplicationRecord
     after_create :assign_days
     private
         def assign_days
-            Day.create!(day_name: 1, begin_turn: '8:00', end_turn: '16:00', branch_office: self)
-            Day.create!(day_name: 2, begin_turn: '8:00', end_turn: '16:00', branch_office: self)
-            Day.create!(day_name: 3, begin_turn: '8:00', end_turn: '16:00', branch_office: self)
-            Day.create!(day_name: 4, begin_turn: '8:00', end_turn: '16:00', branch_office: self)
-            Day.create!(day_name: 5, begin_turn: '8:00', end_turn: '16:00', branch_office: self)
+            Day.create!(day_name: :lunes, begin_turn: '8:00', end_turn: '16:00', branch_office: self)
+            Day.create!(day_name: :martes, begin_turn: '8:00', end_turn: '16:00', branch_office: self)
+            Day.create!(day_name: :miercoles, begin_turn: '8:00', end_turn: '16:00', branch_office: self)
+            Day.create!(day_name: :jueves, begin_turn: '8:00', end_turn: '16:00', branch_office: self)
+            Day.create!(day_name: :viernes, begin_turn: '8:00', end_turn: '16:00', branch_office: self)
         end
 end

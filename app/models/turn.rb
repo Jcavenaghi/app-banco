@@ -9,17 +9,4 @@ class Turn < ApplicationRecord
 
   validates :comment, presence: true, if: -> {state}
 
-  # def state_true?
-  #   if (self.state)
-  #     if (self.comment == nil) || (self.comment == "")
-  #       errors.add :base, "Debe agregar un comentario al turno"
-  #     end
-  #   else
-  #     if (!self.state)
-  #       if (self.comment != nil) && (self.comment != "")
-  #         errors.add :base, "Un turno pendiente no debe tener comentario"
-  #       end
-  #     end
-  #   end
-  # end
 end
