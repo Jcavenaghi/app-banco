@@ -26,32 +26,18 @@ ActiveAdmin.register Turn do
   controller do
     def scoped_collection
       if current_admin_user.staff?
-        #Podría realizar scope. ver
         Turn.where(branch_office_id: current_admin_user.branch_office_id)
       else
         Turn.all
       end
     end
     
-    def destroy
-      if current_admin_user.admin?
-        super
-      else
-        redirect_to admin_turns_path, notice: "No tiene acceso para eliminar"
-      end
-    end
-    
     def edit
-      if (current_admin_user.staff?)
-        #Podría realizar scope. ver
         if (Turn.find(params[:id]).branch_office_id == current_admin_user.branch_office_id ) && (Turn.find(params[:id]).state == false) 
           super
         else
           redirect_to admin_turns_path, notice: "El turno corresponde a otra sucursal o ya ha sido atentido"
         end
-      else
-        redirect_to admin_turns_path, notice: "No tiene acceso para editar"
-      end
     end
   end
 end

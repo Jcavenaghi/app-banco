@@ -41,7 +41,7 @@ class TurnsController < ApplicationController
           if @turn.save
             redirect_to @turn, notice: "El turno fue creado exitosamente!"
           else
-            render :new, status: :unprocessable_entity
+            redirect_to root_path, notice: "La fecha igresada debe ser mayor al día de hoy."
           end
         else
           redirect_to root_path, notice: "El horario ingresado no es válido para el día solicitado."

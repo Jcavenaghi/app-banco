@@ -12,32 +12,5 @@ ActiveAdmin.register User do
     end
     f.actions
   end
-
-  controller do
-    def destroy
-      if (current_admin_user.admin?)
-        super
-      else
-        redirect_to admin_users_path, notice: "No posee permisos para eliminar un usuario."
-      end
-    end
-
-    def edit
-      if (current_admin_user.admin?)
-        super
-      else
-        redirect_to admin_users_path, notice: "No posee permisos para editar un usuario."
-      end
-    end
-
-    def new
-      if (current_admin_user.admin?)
-        super
-      else
-        redirect_to admin_users_path, notice: "No posee permisos para crear un usuario."
-      end
-    end
-  end
-
   
 end

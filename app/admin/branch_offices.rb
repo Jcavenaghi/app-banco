@@ -4,34 +4,16 @@ ActiveAdmin.register BranchOffice do
   permit_params :name, :direc, :tel
   controller do
     def destroy
-      if (current_admin_user.admin?)
-        #con params[:id] obtenemos el id de la sucursal seleccionada
-         office = BranchOffice.find(params[:id])
-        if (office.turns.find_by(state: false))
-          redirect_to admin_branch_offices_path, notice: "No se puede eliminar una sucursal con turnos pendientes"
-        elsif ( (office.turns.find_by(state: true)) || (office.admin_users != []))
-          redirect_to admin_branch_offices_path, notice: "No se puede eliminar una sucursal que ha sido referenciada"
-        else
-          office.destroy
-          redirect_to admin_branch_offices_path, notice: "Sucursal eliminada"
-        end
+      #con params[:id] obtenemos el id de la sucursal seleccionada
+      office = BranchOffice.find(params[:id])
+      if (office.turns.find_by(state: false))
+        redirect_to admin_branch_offices_path, notice: "No se puede eliminar una sucursal con turnos pendientes"
+      elsif ( (office.turns.find_by(state: true)) || (office.admin_users != []))
+        p office.admin_users
+        redirect_to admin_branch_offices_path, notice: "No se puede eliminar una sucursal que ha sido referenciada"
       else
-        redirect_to admin_branch_offices_path, notice: "No posee permisos para eliminar una sucursal."
-      end
-    end
-    def edit
-      if (current_admin_user.admin?)
-        super
-      else
-        redirect_to admin_branch_offices_path, notice: "No posee permisos para editar una sucursal."
-      end
-    end
-    def new
-      if (current_admin_user.admin?)
-        #hacer una nueva y crear dias y horarios asociados
-        super
-      else
-        redirect_to admin_branch_offices_path, notice: "No posee permisos para crear una sucursal."
+        office.destroy
+        redirect_to admin_branch_offices_path, notice: "Sucursal eliminada"
       end
     end
   end

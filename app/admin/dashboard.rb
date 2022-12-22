@@ -10,7 +10,4 @@ ActiveAdmin.register_page "Dashboard" do
       end
     end
   end
-  # controller do
-  #   skip_before_filter :offending_filter
-  # end 
 end

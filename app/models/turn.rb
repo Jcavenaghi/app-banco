@@ -6,7 +6,14 @@ class Turn < ApplicationRecord
   validates :reason, presence: true
   validates :branch_office_id, presence: true
   validates :client_user_id, presence: true
-
   validates :comment, presence: true, if: -> {state}
+  
+  validate :future_date
+
+  def future_date
+      if (fecha < DateTime.now)
+        self.errors.add(:base, "La fecha del turno debe ser mayor a la fecha actual")
+      end
+  end
 
 end

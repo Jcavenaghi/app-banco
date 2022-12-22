@@ -24,6 +24,8 @@ Things you may want to cover:
     . Para la información del cliente, solo muestro el mail (no hay otra cosa que mostrar) y utilizo el mismo apartado para la edición de la contraseña
     . Para un mismo día y hora en una misma sucursal pueden existir x turnos (Se hablo en la clase donde se presento el proyecto).
     . Un cliente puede tener solamente un turno por día, es decir, no puede tener varios turnos en diferentes sucursales el mismo día.
+    --------------------------------
+    . Utilicé pundit para permisos.
 
 * Database initialization
     rails db:setup inicializa todo, incluido los seeds brindados. (hacer solo la primera vez)
